@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/watchlistFragment"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Watchlist" />
+
+    <item
+        android:id="@+id/ordersFragment"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Orders" />
+
+    <item
+        android:id="@+id/portfolioFragment"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Portfolio" />
+
+    <item
+        android:id="@+id/fundsFragment"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Funds" />
+
+    <item
+        android:id="@+id/investFragment"
+        android:icon="@mipmap/ic_launcher"
+        android:title="Invest" />
+
+</menu>
