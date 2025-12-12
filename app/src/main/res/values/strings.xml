@@ -10,4 +10,6 @@
     <string name="invest">Invest</string>
     <string name="orders">Orders</string>
     <string name="portfolio">Portfolio</string>
+    <string name="positions">Positions</string>
+    <string name="holdings">Holdings</string>
 </resources>
