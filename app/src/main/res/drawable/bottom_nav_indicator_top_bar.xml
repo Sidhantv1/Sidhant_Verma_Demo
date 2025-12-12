@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- This provides padding for the item content -->
     <item
         android:bottom="0dp"
         android:left="4dp"
         android:right="4dp"
         android:top="0dp">
         <shape android:shape="rectangle">
-            <!-- This is an invisible full rectangle to define the item space -->
             <solid android:color="@android:color/transparent" />
         </shape>
     </item>
 
-
-    <!-- This is the actual top bar (indicator) -->
     <item
         android:height="3dp"
-        android:gravity="top|center_horizontal"> <!-- Define the height of the narrow bar -->
+        android:gravity="top|center_horizontal">
         <shape android:shape="rectangle">
-            <solid android:color="@color/dark_blue_shade" /> <!-- Use your desired highlight color -->
-            <size android:width="85dp" /> <!-- Define the width of the narrow bar -->
+            <solid android:color="@color/dark_blue_shade" />
+            <size android:width="85dp" />
         </shape>
     </item>
 </layer-list>

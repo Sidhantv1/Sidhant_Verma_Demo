@@ -23,7 +23,7 @@
         style="@style/CustomBottomNavStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/grey_shade_2"
         app:itemActiveIndicatorStyle="@null"
         app:itemBackground="@drawable/bottom_nav_item_background"
         app:itemIconTint="@color/nav_item_color"

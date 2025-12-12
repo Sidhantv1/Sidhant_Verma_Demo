@@ -24,5 +24,7 @@ class HomeActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         activityHomeBinding.bottomNavigation.setupWithNavController(navController)
+         activityHomeBinding.bottomNavigation.itemIconSize =
+             resources.getDimensionPixelSize(R.dimen.bottom_nav_icon_size)
     }
 }

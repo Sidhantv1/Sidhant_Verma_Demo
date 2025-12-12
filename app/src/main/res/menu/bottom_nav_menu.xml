@@ -3,27 +3,27 @@
 
     <item
         android:id="@+id/watchlistFragment"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_bottom_home"
         android:title="Watchlist" />
 
     <item
         android:id="@+id/ordersFragment"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_bottom_mf"
         android:title="Orders" />
 
     <item
         android:id="@+id/portfolioFragment"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_bottom_portfolio"
         android:title="Portfolio" />
 
     <item
         android:id="@+id/fundsFragment"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_bottom_more"
         android:title="Funds" />
 
     <item
         android:id="@+id/investFragment"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_bottom_home"
         android:title="Invest" />
 
 </menu>
