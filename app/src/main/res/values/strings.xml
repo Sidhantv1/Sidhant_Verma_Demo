@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Sidhant_Verma_Demo</string>
+    <string name="funds_fragment">Funds Fragment</string>
+    <string name="invest_fragment">Invest Fragment</string>
+    <string name="orders_fragment">Orders Fragment</string>
+    <string name="watchlist_fragment">Watchlist Fragment</string>
+    <string name="portfolio_fragment">Portfolio Fragment</string>
 </resources>
