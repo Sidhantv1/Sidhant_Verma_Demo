@@ -5,4 +5,9 @@
     <string name="orders_fragment">Orders Fragment</string>
     <string name="watchlist_fragment">Watchlist Fragment</string>
     <string name="portfolio_fragment">Portfolio Fragment</string>
+    <string name="watchlist">Watchlist</string>
+    <string name="funds">Funds</string>
+    <string name="invest">Invest</string>
+    <string name="orders">Orders</string>
+    <string name="portfolio">Portfolio</string>
 </resources>
