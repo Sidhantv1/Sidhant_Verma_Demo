@@ -33,6 +33,9 @@ class HoldingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupViewModel()
         setupAdapter()
+        binding.summaryInclude.summaryHeader.setOnClickListener {
+            viewModel.toggleSummary()
+        }
         observeUi()
         viewModel.loadHoldings()
     }
@@ -71,18 +74,25 @@ class HoldingsFragment : Fragment() {
                         val summary = state.summary
 
                         binding.summaryInclude.apply {
+                            if (state.isExpanded) {
+                                binding.summaryInclude.expandableSection.visibility = View.VISIBLE
+                                binding.summaryInclude.ivExpand.rotation = 0f
+                            } else {
+                                binding.summaryInclude.expandableSection.visibility = View.GONE
+                                binding.summaryInclude.ivExpand.rotation = 180f
+                            }
 
-                            tvCurrentValue.text =
-                                "${"%.2f".format(summary.currentValue).toDouble().toRupee()}"
+                            "%.2f".format(summary.currentValue).toDouble().toRupee()
+                                .also { tvCurrentValue.text = it }
 
-                            tvTotalInvestment.text =
-                                "${"%.2f".format(summary.totalInvestment).toDouble().toRupee()}"
+                            "%.2f".format(summary.totalInvestment).toDouble().toRupee()
+                                .also { tvTotalInvestment.text = it }
 
-                            tvTodayPnL.text =
-                                "${"%.2f".format(summary.todayPnL).toDouble().toRupee()}"
+                            "%.2f".format(summary.todayPnL).toDouble().toRupee()
+                                .also { tvTodayPnL.text = it }
 
-                            tvProfitLossValue.text =
-                                "${"%.2f".format(summary.totalPnL).toDouble().toRupee()}"
+                            "%.2f".format(summary.totalPnL).toDouble().toRupee()
+                                .also { tvProfitLossValue.text = it }
 
                             // color logic
                             tvTodayPnL.setTextColor(
@@ -104,5 +114,4 @@ class HoldingsFragment : Fragment() {
             }
         }
     }
-
 }

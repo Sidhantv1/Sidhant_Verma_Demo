@@ -9,12 +9,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="white_shade">#FCFCFC</color>
     <color name="dark_blue_shade">#243B80</color>
-    <color name="grey_shade">#72727D</color>
-    <color name="grey_shade_2">#F1F1F2</color>
-    <color name="grey_shade_7">#D2D2D6</color>
     <color name="red_shade">#BD423D</color>
     <color name="green_shade">#389440</color>
-    <color name="grey_shade_4">#9C9CA5</color>
-    <color name="grey_shade_10">#F4F4F5</color>
+    <color name="grey_shade">#72727D</color>
+    <color name="grey_shade_1">#F1F1F2</color>
+    <color name="grey_shade_2">#9C9CA5</color>
+    <color name="grey_shade_3">#D2D2D6</color>
+    <color name="grey_shade_4">#F4F4F5</color>
     <color name="black_shade">#27272B</color>
 </resources>
