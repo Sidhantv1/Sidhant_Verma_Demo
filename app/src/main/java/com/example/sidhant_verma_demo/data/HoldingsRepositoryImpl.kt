@@ -28,11 +28,10 @@ class HoldingsRepositoryImpl(
             dao.insertAll(entities)
             entities.map { it.toDomain() }
 
-        } catch (ex: Exception) {
+        } catch (_: Exception) {
             dao.getAll().map { it.toDomain() }
         }
     }
-
 
     private fun HoldingsEntity.toDomain() = Holding(
         symbol = symbol,

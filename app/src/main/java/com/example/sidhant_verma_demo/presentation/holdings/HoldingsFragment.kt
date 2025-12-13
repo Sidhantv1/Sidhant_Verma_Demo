@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sidhant_verma_demo.R
@@ -37,7 +38,6 @@ class HoldingsFragment : Fragment() {
             viewModel.toggleSummary()
         }
         observeUi()
-        viewModel.loadHoldings()
     }
 
     private fun setupViewModel() {
@@ -48,8 +48,11 @@ class HoldingsFragment : Fragment() {
         val getUseCase = GetHoldingsUseCase(repository)
         val calculateSummary = CalculateSummaryUseCase()
 
-        viewModel = HoldingsViewModel(getUseCase, calculateSummary)
+        val factory = HoldingsViewModelFactory(getUseCase, calculateSummary)
+
+        viewModel = ViewModelProvider(this, factory)[HoldingsViewModel::class.java]
     }
+
 
     private fun setupAdapter() {
         adapter = HoldingsAdapter()
@@ -67,10 +70,8 @@ class HoldingsFragment : Fragment() {
 
                     is HoldingsUiState.Success -> {
 
-                        // update list
                         adapter.submitData(state.holdings)
 
-                        // update summary card
                         val summary = state.summary
 
                         binding.summaryInclude.apply {
@@ -94,7 +95,6 @@ class HoldingsFragment : Fragment() {
                             "%.2f".format(summary.totalPnL).toDouble().toRupee()
                                 .also { tvProfitLossValue.text = it }
 
-                            // color logic
                             tvTodayPnL.setTextColor(
                                 if (summary.todayPnL >= 0)
                                     resources.getColor(R.color.green_shade, null)

@@ -20,9 +20,12 @@ class HoldingsViewModel(
 
     private var isExpanded = false
 
-    fun loadHoldings() {
+    init {
+        loadHoldings()
+    }
+
+    private fun loadHoldings() {
         viewModelScope.launch {
-            _uiState.value = HoldingsUiState.Loading
             try {
                 val holdings = getHoldingsUseCase()
                 val summary = calculateSummaryUseCase(holdings)
@@ -63,5 +66,4 @@ class HoldingsViewModel(
             }
         )
     }
-
 }

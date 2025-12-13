@@ -20,6 +20,5 @@ class HoldingsViewModelFactory(
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }
-
 }
 
