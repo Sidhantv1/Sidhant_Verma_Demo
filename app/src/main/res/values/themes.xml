@@ -18,4 +18,12 @@
         <item name="android:paddingBottom">4dp</item>
         <item name="itemIconSize">20dp</item>
     </style>
+
+    <style name="SummaryCardShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerSizeTopRight">16dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
 </resources>

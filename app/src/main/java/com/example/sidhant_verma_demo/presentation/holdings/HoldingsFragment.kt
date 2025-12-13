@@ -16,6 +16,7 @@ import com.example.sidhant_verma_demo.data.remote.RetrofitClient
 import com.example.sidhant_verma_demo.databinding.FragmentHoldingsBinding
 import com.example.sidhant_verma_demo.domain.usecase.CalculateSummaryUseCase
 import com.example.sidhant_verma_demo.domain.usecase.GetHoldingsUseCase
+import com.example.sidhant_verma_demo.presentation.utils.toPercentage
 import com.example.sidhant_verma_demo.presentation.utils.toRupee
 import com.google.android.material.snackbar.Snackbar
 
@@ -95,6 +96,12 @@ class HoldingsFragment : Fragment() {
 
                         adapter.submitData(state.holdings)
                         val summary = state.summary
+                        val pnlValue = summary.totalPnL
+                        val pnlPercentage = if (summary.totalInvestment != 0.0) {
+                            (pnlValue / summary.totalInvestment) * 100
+                        } else 0.0
+                        val pnlRupee = "%.2f".format(summary.totalPnL).toDouble().toRupee()
+                        val pnlPercent = pnlPercentage.toPercentage()
                         binding.summaryInclude.apply {
                             if (state.isExpanded) {
                                 binding.summaryInclude.expandableSection.visibility = View.VISIBLE
@@ -113,8 +120,7 @@ class HoldingsFragment : Fragment() {
                             "%.2f".format(summary.todayPnL).toDouble().toRupee()
                                 .also { tvTodayPnL.text = it }
 
-                            "%.2f".format(summary.totalPnL).toDouble().toRupee()
-                                .also { tvProfitLossValue.text = it }
+                            "$pnlRupee ($pnlPercent)".also { tvProfitLossValue.text = it }
 
                             tvTodayPnL.setTextColor(
                                 if (summary.todayPnL >= 0)

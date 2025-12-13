@@ -13,3 +13,7 @@ fun Double.toRupee(): String {
         "₹$formatted".replace("₹", "").trim().let { "₹$it" }
     }
 }
+
+fun Double.toPercentage(): String {
+    return String.format("%.2f%%", this)
+}
