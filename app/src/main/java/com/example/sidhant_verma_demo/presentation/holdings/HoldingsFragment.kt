@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -117,16 +118,16 @@ class HoldingsFragment : Fragment() {
 
                             tvTodayPnL.setTextColor(
                                 if (summary.todayPnL >= 0)
-                                    resources.getColor(R.color.green_shade, null)
+                                    ContextCompat.getColor(requireContext(), R.color.green_shade)
                                 else
-                                    resources.getColor(R.color.red_shade, null)
+                                    ContextCompat.getColor(requireContext(), R.color.red_shade)
                             )
 
                             tvProfitLossValue.setTextColor(
                                 if (summary.totalPnL >= 0)
-                                    resources.getColor(R.color.green_shade, null)
+                                    ContextCompat.getColor(requireContext(), R.color.green_shade)
                                 else
-                                    resources.getColor(R.color.red_shade, null)
+                                    ContextCompat.getColor(requireContext(), R.color.red_shade)
                             )
                         }
                     }
