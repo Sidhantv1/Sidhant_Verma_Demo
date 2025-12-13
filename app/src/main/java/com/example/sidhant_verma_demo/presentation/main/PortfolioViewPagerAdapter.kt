@@ -6,12 +6,14 @@ import com.example.sidhant_verma_demo.presentation.holdings.HoldingsFragment
 
 class PortfolioViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
-    private val fragments = listOf(
-        PositionsFragment(),
-        HoldingsFragment()
-    )
+    private val tabs = PortfolioTab.entries.toTypedArray()
 
-    override fun getItemCount(): Int = fragments.size
+    override fun getItemCount() = tabs.size
 
-    override fun createFragment(position: Int): Fragment = fragments[position]
+    override fun createFragment(position: Int): Fragment {
+        return when (tabs[position]) {
+            PortfolioTab.POSITIONS -> PositionsFragment()
+            PortfolioTab.HOLDINGS -> HoldingsFragment()
+        }
+    }
 }

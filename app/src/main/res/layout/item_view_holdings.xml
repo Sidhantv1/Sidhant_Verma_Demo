@@ -10,48 +10,102 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:textColor="@color/black"
+        android:textColor="@color/black_shade"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tool:text="HDFC" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_ltp"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_ltp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="normal"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tool:text="LTP: ₹634.70" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_net_qty"
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ltp"
+            android:textColor="@color/grey_shade"
+            android:textSize="11sp"
+            android:textStyle="normal" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_ltp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/black_shade"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            tool:text="₹634.70" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_net_qty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="normal"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_stock_name"
-        tool:text="NET QTY: 43" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_stock_name">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_pl"
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/net_qty"
+            android:textColor="@color/grey_shade"
+            android:textSize="11sp"
+            android:textStyle="normal" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_net_qty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/black_shade"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            tool:text="43" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_pl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="normal"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ltp"
-        tool:text="P&amp;L: ₹4.54" />
+        app:layout_constraintTop_toBottomOf="@+id/ll_ltp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/p_amp_l"
+            android:textColor="@color/grey_shade"
+            android:textSize="11sp"
+            android:textStyle="normal" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_pl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/black_shade"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            tool:text="₹4.54" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <View
         android:id="@+id/view"
@@ -61,6 +115,6 @@
         android:background="@color/grey_shade_3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_net_qty" />
+        app:layout_constraintTop_toBottomOf="@+id/ll_net_qty" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

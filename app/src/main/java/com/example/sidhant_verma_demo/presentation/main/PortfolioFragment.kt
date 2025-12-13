@@ -22,6 +22,8 @@ class PortfolioFragment : Fragment() {
         return fragmentPortfolioBinding.root
     }
 
+    val tabs = PortfolioTab.entries.toTypedArray()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         portfolioViewPagerAdapter = PortfolioViewPagerAdapter(this)
@@ -30,11 +32,12 @@ class PortfolioFragment : Fragment() {
             fragmentPortfolioBinding.tabLayout,
             fragmentPortfolioBinding.viewPager
         ) { tab, position ->
-            tab.text = when (position) {
-                0 -> getString(R.string.positions)
-                1 -> getString(R.string.holdings)
-                else -> ""
-            }
+            tab.text = getString(tabs[position].titleRes)
         }.attach()
     }
+}
+
+enum class PortfolioTab(val titleRes: Int) {
+    POSITIONS(R.string.positions),
+    HOLDINGS(R.string.holdings)
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/summaryCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -7,15 +8,14 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- EXPANDABLE SECTION -->
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/expandableSection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        tools:visibility="visible">
 
-        <!-- Current value row -->
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,7 +40,6 @@
                 android:textStyle="bold" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <!-- Total Investment -->
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,7 +65,6 @@
                 android:textStyle="bold" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <!-- Today P&L -->
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -101,7 +99,6 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <!-- COLLAPSE HEADER -->
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/summaryHeader"
         android:layout_width="match_parent"
@@ -133,7 +130,8 @@
             android:layout_weight="1"
             android:gravity="end"
             android:textColor="@color/red_shade"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:textStyle="bold" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

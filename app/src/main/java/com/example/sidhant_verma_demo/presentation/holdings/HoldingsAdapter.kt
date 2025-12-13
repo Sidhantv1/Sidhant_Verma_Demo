@@ -29,11 +29,10 @@ class HoldingsAdapter :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
         holder.binding.apply {
-
             tvStockName.text = item.symbol
-            "LTP: ${((item.ltpFormatted).toDouble().toRupee())}".also { tvLtp.text = it }
-            "NET QTY: ${item.quantity}".also { tvNetQty.text = it }
-            "P&L: ${(item.pnlFormatted).toDouble().toRupee()}".also { tvPl.text = it }
+            ((item.ltpFormatted).toDouble().toRupee()).also { tvLtp.text = it }
+            item.quantity.also { tvNetQty.text = it }
+            (item.pnlFormatted).toDouble().toRupee().also { tvPl.text = it }
             tvPl.setTextColor(
                 ContextCompat.getColor(holder.itemView.context, item.pnlColorRes)
             )
