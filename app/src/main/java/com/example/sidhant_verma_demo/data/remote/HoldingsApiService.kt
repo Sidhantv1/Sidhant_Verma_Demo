@@ -4,5 +4,5 @@ import retrofit2.http.GET
 
 interface HoldingsApiService {
     @GET("/")
-    suspend fun getHoldings(): HoldingsResponseDto
+    suspend fun getHoldings(): HoldingsApiResponse
 }

@@ -5,15 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sidhant_verma_demo.databinding.ItemViewHoldingsBinding
 
-class HoldingsAdapter : RecyclerView.Adapter<HoldingsAdapter.ViewHolder>() {
+class HoldingsAdapter :
+    RecyclerView.Adapter<HoldingsAdapter.ViewHolder>() {
 
-    inner class ViewHolder(binding: ItemViewHoldingsBinding) :
+    private val items = mutableListOf<HoldingsUiModel>()
+
+    inner class ViewHolder(val binding: ItemViewHoldingsBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemViewHoldingsBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
@@ -22,11 +22,23 @@ class HoldingsAdapter : RecyclerView.Adapter<HoldingsAdapter.ViewHolder>() {
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun getItemCount(): Int = items.size
 
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = items[position]
+        holder.binding.apply {
+
+            tvStockName.text = item.symbol
+            tvLtp.text = "LTP: ${item.ltpFormatted}"
+            tvNetQty.text = "NET QTY: ${item.quantity}"
+            tvPl.text = "P&L: ${item.pnlFormatted}"
+            tvPl.setTextColor(item.pnlColor)
+        }
     }
 
-    override fun getItemCount(): Int {
-        return 10
+    fun submitData(newList: List<HoldingsUiModel>) {
+        items.clear()
+        items.addAll(newList)
+        notifyDataSetChanged()
     }
 }

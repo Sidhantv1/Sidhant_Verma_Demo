@@ -15,7 +15,7 @@ class HoldingsRepositoryImpl(
         return try {
             val response = api.getHoldings()
 
-            val entities = response.data.map {
+            val entities = response.data.userHolding.map {
                 HoldingsEntity(
                     symbol = it.symbol,
                     quantity = it.quantity,
@@ -26,7 +26,6 @@ class HoldingsRepositoryImpl(
             }
 
             dao.insertAll(entities)
-
             entities.map { it.toDomain() }
 
         } catch (ex: Exception) {
@@ -34,13 +33,13 @@ class HoldingsRepositoryImpl(
         }
     }
 
-    private fun HoldingsEntity.toDomain(): Holding {
-        return Holding(
-            symbol = symbol,
-            quantity = quantity,
-            ltp = ltp,
-            avgPrice = avgPrice,
-            close = close
-        )
-    }
+
+    private fun HoldingsEntity.toDomain() = Holding(
+        symbol = symbol,
+        quantity = quantity,
+        ltp = ltp,
+        avgPrice = avgPrice,
+        close = close
+    )
 }
+

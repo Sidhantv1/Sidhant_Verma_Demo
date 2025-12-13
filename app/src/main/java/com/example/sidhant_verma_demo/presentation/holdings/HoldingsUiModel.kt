@@ -7,3 +7,4 @@ data class HoldingsUiModel(
     val pnlFormatted: String,
     val pnlColor: Int
 )
+
