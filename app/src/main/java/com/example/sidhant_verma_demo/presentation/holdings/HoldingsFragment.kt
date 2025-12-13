@@ -14,6 +14,7 @@ import com.example.sidhant_verma_demo.data.remote.RetrofitClient
 import com.example.sidhant_verma_demo.databinding.FragmentHoldingsBinding
 import com.example.sidhant_verma_demo.domain.usecase.CalculateSummaryUseCase
 import com.example.sidhant_verma_demo.domain.usecase.GetHoldingsUseCase
+import com.example.sidhant_verma_demo.presentation.utils.toRupee
 
 class HoldingsFragment : Fragment() {
 
@@ -72,16 +73,16 @@ class HoldingsFragment : Fragment() {
                         binding.summaryInclude.apply {
 
                             tvCurrentValue.text =
-                                "₹${"%.2f".format(summary.currentValue)}"
+                                "${"%.2f".format(summary.currentValue).toDouble().toRupee()}"
 
                             tvTotalInvestment.text =
-                                "₹${"%.2f".format(summary.totalInvestment)}"
+                                "${"%.2f".format(summary.totalInvestment).toDouble().toRupee()}"
 
                             tvTodayPnL.text =
-                                "₹${"%.2f".format(summary.todayPnL)}"
+                                "${"%.2f".format(summary.todayPnL).toDouble().toRupee()}"
 
                             tvProfitLossValue.text =
-                                "₹${"%.2f".format(summary.totalPnL)}"
+                                "${"%.2f".format(summary.totalPnL).toDouble().toRupee()}"
 
                             // color logic
                             tvTodayPnL.setTextColor(

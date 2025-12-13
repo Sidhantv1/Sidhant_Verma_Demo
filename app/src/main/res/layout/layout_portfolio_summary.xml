@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/summaryCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -18,18 +19,18 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Current value*"
-            android:textColor="@color/black"
+            android:text="@string/current_value"
+            android:textColor="@color/black_shade"
             android:textSize="14sp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvCurrentValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="₹27,893.65"
-            android:textColor="@color/black"
+            android:textColor="@color/black_shade"
             android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="₹27,893.65" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <!-- Total Investment Row -->
@@ -45,18 +46,18 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Total investment*"
-            android:textColor="@color/black"
+            android:text="@string/total_investment"
+            android:textColor="@color/black_shade"
             android:textSize="14sp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvTotalInvestment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="₹28,590.71"
-            android:textColor="@color/black"
+            android:textColor="@color/black_shade"
             android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="₹28,590.71" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <!-- Today's P&L Row -->
@@ -72,18 +73,18 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Today's Profit &amp; Loss*"
-            android:textColor="@color/black"
+            android:text="@string/today_s_profit_amp_loss"
+            android:textColor="@color/black_shade"
             android:textSize="14sp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvTodayPnL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-₹235.65"
             android:textColor="@color/red_shade"
             android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="-₹235.65" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <!-- Divider -->
@@ -104,30 +105,32 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvProfitLossLabel"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Profit &amp; Loss*"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:text="@string/profit_amp_loss"
+            android:textColor="@color/black_shade"
+            android:textSize="15sp"
+            android:textStyle="normal" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivExpand"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_down_arrow"
+            android:tint="@color/grey_shade_4" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvProfitLossValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-₹697.06 (2.44%)"
+            android:layout_weight="1"
+            android:gravity="end"
             android:textColor="@color/red_shade"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="15sp"
+            android:textStyle="normal"
+            tools:text="-₹697.06 (2.44%)" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivExpand"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_marginStart="8dp"
-            android:src="@drawable/ic_down_arrow"
-            android:tint="@color/grey_shade_4" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
