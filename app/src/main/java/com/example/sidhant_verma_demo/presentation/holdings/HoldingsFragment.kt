@@ -16,6 +16,7 @@ import com.example.sidhant_verma_demo.databinding.FragmentHoldingsBinding
 import com.example.sidhant_verma_demo.domain.usecase.CalculateSummaryUseCase
 import com.example.sidhant_verma_demo.domain.usecase.GetHoldingsUseCase
 import com.example.sidhant_verma_demo.presentation.utils.toRupee
+import com.google.android.material.snackbar.Snackbar
 
 class HoldingsFragment : Fragment() {
 
@@ -65,15 +66,34 @@ class HoldingsFragment : Fragment() {
         lifecycleScope.launchWhenStarted {
             viewModel.uiState.collect { state ->
                 when (state) {
-                    is HoldingsUiState.Loading -> Unit
-                    is HoldingsUiState.Error -> Unit
+                    is HoldingsUiState.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                        binding.recyclerViewHoldings.visibility = View.GONE
+                        binding.summaryInclude.root.visibility = View.GONE
+                    }
+
+                    is HoldingsUiState.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        binding.recyclerViewHoldings.visibility = View.GONE
+                        binding.summaryInclude.root.visibility = View.GONE
+                        Snackbar.make(
+                            requireView(),
+                            "Failed to load holdings. Please try again.",
+                            Snackbar.LENGTH_LONG
+                        )
+                            .setAction("Retry") {
+                                viewModel.loadHoldings()
+                            }
+                            .show()
+                    }
 
                     is HoldingsUiState.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        binding.recyclerViewHoldings.visibility = View.VISIBLE
+                        binding.summaryInclude.root.visibility = View.VISIBLE
 
                         adapter.submitData(state.holdings)
-
                         val summary = state.summary
-
                         binding.summaryInclude.apply {
                             if (state.isExpanded) {
                                 binding.summaryInclude.expandableSection.visibility = View.VISIBLE

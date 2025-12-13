@@ -24,12 +24,15 @@ class HoldingsRepositoryImpl(
                     close = it.close
                 )
             }
-
             dao.insertAll(entities)
             entities.map { it.toDomain() }
-
-        } catch (_: Exception) {
-            dao.getAll().map { it.toDomain() }
+        } catch (e: Exception) {
+            val local = dao.getAll()
+            if (local.isNotEmpty()) {
+                local.map { it.toDomain() }
+            } else {
+                throw e
+            }
         }
     }
 

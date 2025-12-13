@@ -24,7 +24,7 @@ class HoldingsViewModel(
         loadHoldings()
     }
 
-    private fun loadHoldings() {
+    fun loadHoldings() {
         viewModelScope.launch {
             try {
                 val holdings = getHoldingsUseCase()
