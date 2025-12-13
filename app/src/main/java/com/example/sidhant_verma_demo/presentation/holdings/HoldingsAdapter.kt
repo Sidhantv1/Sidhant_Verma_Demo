@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sidhant_verma_demo.databinding.ItemViewHoldingsBinding
+import com.example.sidhant_verma_demo.presentation.utils.toRupee
 
 class HoldingsAdapter :
     RecyclerView.Adapter<HoldingsAdapter.ViewHolder>() {
@@ -30,9 +31,9 @@ class HoldingsAdapter :
         holder.binding.apply {
 
             tvStockName.text = item.symbol
-            tvLtp.text = "LTP: ${item.ltpFormatted}"
-            tvNetQty.text = "NET QTY: ${item.quantity}"
-            tvPl.text = "P&L: ${item.pnlFormatted}"
+            "LTP: ${((item.ltpFormatted).toDouble().toRupee())}".also { tvLtp.text = it }
+            "NET QTY: ${item.quantity}".also { tvNetQty.text = it }
+            "P&L: ${(item.pnlFormatted).toDouble().toRupee()}".also { tvPl.text = it }
             tvPl.setTextColor(
                 ContextCompat.getColor(holder.itemView.context, item.pnlColorRes)
             )

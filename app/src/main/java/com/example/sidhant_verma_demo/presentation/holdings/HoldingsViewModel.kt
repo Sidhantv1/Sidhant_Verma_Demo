@@ -54,8 +54,8 @@ class HoldingsViewModel(
         return HoldingsUiModel(
             symbol = symbol,
             quantity = quantity.toString(),
-            ltpFormatted = "₹%.2f".format(ltp),
-            pnlFormatted = "₹%.2f".format(pnl),
+            ltpFormatted = "%.2f".format(ltp),
+            pnlFormatted = "%.2f".format(pnl),
             pnlColorRes = if (pnl >= 0) {
                 R.color.green_shade
             } else {
