@@ -7,7 +7,7 @@ import com.example.sidhant_verma_demo.presentation.holdings.HoldingsFragment
 class PortfolioViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     private val fragments = listOf(
-        HoldingsFragment(),
+        PositionsFragment(),
         HoldingsFragment()
     )
 
