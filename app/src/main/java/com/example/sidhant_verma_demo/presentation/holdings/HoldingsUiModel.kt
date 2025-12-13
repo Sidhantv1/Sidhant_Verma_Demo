@@ -5,6 +5,6 @@ data class HoldingsUiModel(
     val quantity: String,
     val ltpFormatted: String,
     val pnlFormatted: String,
-    val pnlColor: Int
+    val pnlColorRes: Int
 )
 

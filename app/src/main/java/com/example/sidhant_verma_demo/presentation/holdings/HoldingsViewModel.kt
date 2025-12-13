@@ -1,8 +1,8 @@
 package com.example.sidhant_verma_demo.presentation.holdings
 
-import android.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.sidhant_verma_demo.R
 import com.example.sidhant_verma_demo.domain.model.Holding
 import com.example.sidhant_verma_demo.domain.usecase.CalculateSummaryUseCase
 import com.example.sidhant_verma_demo.domain.usecase.GetHoldingsUseCase
@@ -50,12 +50,18 @@ class HoldingsViewModel(
 
     private fun Holding.toUi(): HoldingsUiModel {
         val pnl = (ltp - avgPrice) * quantity
+
         return HoldingsUiModel(
             symbol = symbol,
             quantity = quantity.toString(),
             ltpFormatted = "₹%.2f".format(ltp),
             pnlFormatted = "₹%.2f".format(pnl),
-            pnlColor = if (pnl >= 0) Color.GREEN else Color.RED
+            pnlColorRes = if (pnl >= 0) {
+                R.color.green_shade
+            } else {
+                R.color.red_shade
+            }
         )
     }
+
 }

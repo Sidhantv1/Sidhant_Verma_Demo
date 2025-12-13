@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.sidhant_verma_demo.R
 import com.example.sidhant_verma_demo.data.HoldingsRepositoryImpl
 import com.example.sidhant_verma_demo.data.local.db.AppDatabase
 import com.example.sidhant_verma_demo.data.remote.RetrofitClient
@@ -29,7 +30,6 @@ class HoldingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupViewModel()
         setupAdapter()
         observeUi()
@@ -60,11 +60,48 @@ class HoldingsFragment : Fragment() {
                 when (state) {
                     is HoldingsUiState.Loading -> Unit
                     is HoldingsUiState.Error -> Unit
+
                     is HoldingsUiState.Success -> {
+
+                        // update list
                         adapter.submitData(state.holdings)
+
+                        // update summary card
+                        val summary = state.summary
+
+                        binding.summaryInclude.apply {
+
+                            tvCurrentValue.text =
+                                "₹${"%.2f".format(summary.currentValue)}"
+
+                            tvTotalInvestment.text =
+                                "₹${"%.2f".format(summary.totalInvestment)}"
+
+                            tvTodayPnL.text =
+                                "₹${"%.2f".format(summary.todayPnL)}"
+
+                            tvProfitLossValue.text =
+                                "₹${"%.2f".format(summary.totalPnL)}"
+
+                            // color logic
+                            tvTodayPnL.setTextColor(
+                                if (summary.todayPnL >= 0)
+                                    resources.getColor(R.color.green_shade, null)
+                                else
+                                    resources.getColor(R.color.red_shade, null)
+                            )
+
+                            tvProfitLossValue.setTextColor(
+                                if (summary.totalPnL >= 0)
+                                    resources.getColor(R.color.green_shade, null)
+                                else
+                                    resources.getColor(R.color.red_shade, null)
+                            )
+                        }
                     }
                 }
             }
         }
     }
+
 }

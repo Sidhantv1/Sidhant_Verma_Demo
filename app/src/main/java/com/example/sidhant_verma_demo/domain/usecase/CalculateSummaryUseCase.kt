@@ -8,15 +8,18 @@ class CalculateSummaryUseCase {
     operator fun invoke(holdings: List<Holding>): PortfolioSummary {
 
         val currentValue = holdings.sumOf { it.ltp * it.quantity }
+
         val totalInvestment = holdings.sumOf { it.avgPrice * it.quantity }
-        val totalPnl = currentValue - totalInvestment
-        val todaysPnl = holdings.sumOf { (it.close - it.ltp) * it.quantity }
+
+        val totalPnL = currentValue - totalInvestment
+
+        val todayPnL = holdings.sumOf { (it.close - it.ltp) * it.quantity }
 
         return PortfolioSummary(
             currentValue = currentValue,
             totalInvestment = totalInvestment,
-            totalPnl = totalPnl,
-            todaysPnl = todaysPnl
+            totalPnL = totalPnL,
+            todayPnL = todayPnL
         )
     }
 }

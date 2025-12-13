@@ -2,6 +2,7 @@ package com.example.sidhant_verma_demo.presentation.holdings
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sidhant_verma_demo.databinding.ItemViewHoldingsBinding
 
@@ -32,7 +33,9 @@ class HoldingsAdapter :
             tvLtp.text = "LTP: ${item.ltpFormatted}"
             tvNetQty.text = "NET QTY: ${item.quantity}"
             tvPl.text = "P&L: ${item.pnlFormatted}"
-            tvPl.setTextColor(item.pnlColor)
+            tvPl.setTextColor(
+                ContextCompat.getColor(holder.itemView.context, item.pnlColorRes)
+            )
         }
     }
 
