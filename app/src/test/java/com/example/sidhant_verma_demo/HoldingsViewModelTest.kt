@@ -19,10 +19,6 @@ class HoldingsViewModelTest {
     @get:Rule
     val dispatcherRule = TestDispatcherRule()
 
-    private val sampleHoldings = listOf(
-        Holding("ABC", 10, 100.0, 80.0, 110.0)
-    )
-
     // Fake Repository Success
     class FakeSuccessRepository : HoldingsRepository {
         override suspend fun getHoldings(): List<Holding> = listOf(
