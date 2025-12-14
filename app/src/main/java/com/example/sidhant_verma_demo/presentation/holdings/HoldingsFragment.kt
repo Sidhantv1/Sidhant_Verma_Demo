@@ -148,12 +148,27 @@ class HoldingsFragment : Fragment() {
 
     private fun showErrorSnackbar() {
         val parent = requireActivity().findViewById<View>(android.R.id.content)
-        Snackbar.make(
+        val snackBar = Snackbar.make(
             parent,
             getString(R.string.failed_to_load_holdings_please_try_again),
             Snackbar.LENGTH_LONG
-        ).setAction("Retry") {
+        )
+
+        snackBar.view.setBackgroundColor(
+            ContextCompat.getColor(requireContext(), R.color.red_shade)
+        )
+
+        snackBar.setTextColor(
+            ContextCompat.getColor(requireContext(), R.color.white_shade)
+        )
+
+        snackBar.setActionTextColor(
+            ContextCompat.getColor(requireContext(), R.color.white_shade)
+        )
+
+        snackBar.setAction("Retry") {
             viewModel.loadHoldings()
-        }.show()
+        }
+        snackBar.show()
     }
 }
