@@ -38,7 +38,7 @@ class HoldingsViewModelTest {
     }
 
     @Test
-    fun `viewModel emits success state when data loads`() = runTest {
+    fun viewModelEmitsSuccessStateWhenDataLoads() = runTest {
         val vm = HoldingsViewModel(
             getHoldingsUseCase = GetHoldingsUseCase(FakeSuccessRepository()),
             calculateSummaryUseCase = CalculateSummaryUseCase()
@@ -50,7 +50,7 @@ class HoldingsViewModelTest {
     }
 
     @Test
-    fun `viewModel emits error state when repository throws`() = runTest {
+    fun viewModelEmitsErrorStateWhenRepositoryThrows() = runTest {
         val vm = HoldingsViewModel(
             getHoldingsUseCase = GetHoldingsUseCase(FakeErrorRepository()),
             calculateSummaryUseCase = CalculateSummaryUseCase()
@@ -62,7 +62,7 @@ class HoldingsViewModelTest {
     }
 
     @Test
-    fun `toggleSummary changes expanded value in Success state`() = runTest {
+    fun toggleSummaryChangesExpandedValueInSuccessState() = runTest {
         val vm = HoldingsViewModel(
             getHoldingsUseCase = GetHoldingsUseCase(FakeSuccessRepository()),
             calculateSummaryUseCase = CalculateSummaryUseCase()

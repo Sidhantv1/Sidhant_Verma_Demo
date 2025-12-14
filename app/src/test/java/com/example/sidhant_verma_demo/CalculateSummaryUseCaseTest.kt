@@ -10,7 +10,7 @@ class CalculateSummaryUseCaseTest {
     private val useCase = CalculateSummaryUseCase()
 
     @Test
-    fun `calculates correct summary for valid holdings`() {
+    fun calculatesCorrectSummaryForValidHoldings() {
         val holdings = listOf(
             Holding("ABC", 10, 100.0, 80.0, 110.0),
             Holding("XYZ", 5, 200.0, 180.0, 190.0)
@@ -33,7 +33,7 @@ class CalculateSummaryUseCaseTest {
     }
 
     @Test
-    fun `returns zero values when list is empty`() {
+    fun returnsZeroValuesWhenListIsEmpty() {
         val result = useCase(emptyList())
 
         assertEquals(0.0, result.currentValue, 0.01)
@@ -43,7 +43,7 @@ class CalculateSummaryUseCaseTest {
     }
 
     @Test
-    fun `handles negative PnL scenarios correctly`() {
+    fun handlesNegativePnLScenariosCorrectly() {
         val holdings = listOf(
             Holding("TEST", 10, 80.0, 100.0, 70.0)
         )
