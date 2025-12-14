@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sidhant_verma_demo.R
 import com.example.sidhant_verma_demo.data.HoldingsRepositoryImpl
@@ -19,6 +21,7 @@ import com.example.sidhant_verma_demo.domain.usecase.GetHoldingsUseCase
 import com.example.sidhant_verma_demo.presentation.utils.toPercentage
 import com.example.sidhant_verma_demo.presentation.utils.toRupee
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.launch
 
 class HoldingsFragment : Fragment() {
 
@@ -65,80 +68,92 @@ class HoldingsFragment : Fragment() {
     }
 
     private fun observeUi() {
-        lifecycleScope.launchWhenStarted {
-            viewModel.uiState.collect { state ->
-                when (state) {
-                    is HoldingsUiState.Loading -> {
-                        binding.progressBar.visibility = View.VISIBLE
-                        binding.recyclerViewHoldings.visibility = View.GONE
-                        binding.summaryInclude.root.visibility = View.GONE
-                    }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect { state ->
+                    when (state) {
+                        is HoldingsUiState.Loading -> {
+                            binding.progressBar.visibility = View.VISIBLE
+                            binding.recyclerViewHoldings.visibility = View.GONE
+                            binding.summaryInclude.root.visibility = View.GONE
+                        }
 
-                    is HoldingsUiState.Error -> {
-                        binding.progressBar.visibility = View.GONE
-                        binding.recyclerViewHoldings.visibility = View.GONE
-                        binding.summaryInclude.root.visibility = View.GONE
-                        Snackbar.make(
-                            requireView(),
-                            "Failed to load holdings. Please try again.",
-                            Snackbar.LENGTH_LONG
-                        )
-                            .setAction("Retry") {
-                                viewModel.loadHoldings()
+                        is HoldingsUiState.Error -> {
+                            binding.progressBar.visibility = View.GONE
+                            binding.recyclerViewHoldings.visibility = View.GONE
+                            binding.summaryInclude.root.visibility = View.GONE
+                            showErrorSnackbar()
+                        }
+
+                        is HoldingsUiState.Success -> {
+                            binding.progressBar.visibility = View.GONE
+                            binding.recyclerViewHoldings.visibility = View.VISIBLE
+                            binding.summaryInclude.root.visibility = View.VISIBLE
+
+                            adapter.submitData(state.holdings)
+                            val summary = state.summary
+                            val pnlValue = summary.totalPnL
+                            val pnlPercentage = if (summary.totalInvestment != 0.0) {
+                                (pnlValue / summary.totalInvestment) * 100
+                            } else 0.0
+                            val pnlRupee = "%.2f".format(summary.totalPnL).toDouble().toRupee()
+                            val pnlPercent = pnlPercentage.toPercentage()
+                            binding.summaryInclude.apply {
+                                if (state.isExpanded) {
+                                    binding.summaryInclude.expandableSection.visibility =
+                                        View.VISIBLE
+                                    binding.summaryInclude.ivExpand.rotation = 0f
+                                } else {
+                                    binding.summaryInclude.expandableSection.visibility = View.GONE
+                                    binding.summaryInclude.ivExpand.rotation = 180f
+                                }
+
+                                "%.2f".format(summary.currentValue).toDouble().toRupee()
+                                    .also { tvCurrentValue.text = it }
+
+                                "%.2f".format(summary.totalInvestment).toDouble().toRupee()
+                                    .also { tvTotalInvestment.text = it }
+
+                                "%.2f".format(summary.todayPnL).toDouble().toRupee()
+                                    .also { tvTodayPnL.text = it }
+
+                                "$pnlRupee ($pnlPercent)".also { tvProfitLossValue.text = it }
+
+                                tvTodayPnL.setTextColor(
+                                    if (summary.todayPnL >= 0)
+                                        ContextCompat.getColor(
+                                            requireContext(),
+                                            R.color.green_shade
+                                        )
+                                    else
+                                        ContextCompat.getColor(requireContext(), R.color.red_shade)
+                                )
+
+                                tvProfitLossValue.setTextColor(
+                                    if (summary.totalPnL >= 0)
+                                        ContextCompat.getColor(
+                                            requireContext(),
+                                            R.color.green_shade
+                                        )
+                                    else
+                                        ContextCompat.getColor(requireContext(), R.color.red_shade)
+                                )
                             }
-                            .show()
-                    }
-
-                    is HoldingsUiState.Success -> {
-                        binding.progressBar.visibility = View.GONE
-                        binding.recyclerViewHoldings.visibility = View.VISIBLE
-                        binding.summaryInclude.root.visibility = View.VISIBLE
-
-                        adapter.submitData(state.holdings)
-                        val summary = state.summary
-                        val pnlValue = summary.totalPnL
-                        val pnlPercentage = if (summary.totalInvestment != 0.0) {
-                            (pnlValue / summary.totalInvestment) * 100
-                        } else 0.0
-                        val pnlRupee = "%.2f".format(summary.totalPnL).toDouble().toRupee()
-                        val pnlPercent = pnlPercentage.toPercentage()
-                        binding.summaryInclude.apply {
-                            if (state.isExpanded) {
-                                binding.summaryInclude.expandableSection.visibility = View.VISIBLE
-                                binding.summaryInclude.ivExpand.rotation = 0f
-                            } else {
-                                binding.summaryInclude.expandableSection.visibility = View.GONE
-                                binding.summaryInclude.ivExpand.rotation = 180f
-                            }
-
-                            "%.2f".format(summary.currentValue).toDouble().toRupee()
-                                .also { tvCurrentValue.text = it }
-
-                            "%.2f".format(summary.totalInvestment).toDouble().toRupee()
-                                .also { tvTotalInvestment.text = it }
-
-                            "%.2f".format(summary.todayPnL).toDouble().toRupee()
-                                .also { tvTodayPnL.text = it }
-
-                            "$pnlRupee ($pnlPercent)".also { tvProfitLossValue.text = it }
-
-                            tvTodayPnL.setTextColor(
-                                if (summary.todayPnL >= 0)
-                                    ContextCompat.getColor(requireContext(), R.color.green_shade)
-                                else
-                                    ContextCompat.getColor(requireContext(), R.color.red_shade)
-                            )
-
-                            tvProfitLossValue.setTextColor(
-                                if (summary.totalPnL >= 0)
-                                    ContextCompat.getColor(requireContext(), R.color.green_shade)
-                                else
-                                    ContextCompat.getColor(requireContext(), R.color.red_shade)
-                            )
                         }
                     }
                 }
             }
         }
+    }
+
+    private fun showErrorSnackbar() {
+        val parent = requireActivity().findViewById<View>(android.R.id.content)
+        Snackbar.make(
+            parent,
+            "Failed to load holdings. Please try again.",
+            Snackbar.LENGTH_LONG
+        ).setAction("Retry") {
+            viewModel.loadHoldings()
+        }.show()
     }
 }
