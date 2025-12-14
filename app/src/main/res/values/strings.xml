@@ -21,4 +21,6 @@
     <string name="ltp">LTP:</string>
     <string name="p_amp_l">P&amp;L:</string>
     <string name="failed_to_load_holdings_please_try_again">Failed to load holdings. Please try again.</string>
+    <string name="search">Search</string>
+    <string name="sort">Sort</string>
 </resources>
