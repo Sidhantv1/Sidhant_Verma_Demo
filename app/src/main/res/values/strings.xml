@@ -20,4 +20,5 @@
     <string name="net_qty">NET QTY:</string>
     <string name="ltp">LTP:</string>
     <string name="p_amp_l">P&amp;L:</string>
+    <string name="failed_to_load_holdings_please_try_again">Failed to load holdings. Please try again.</string>
 </resources>

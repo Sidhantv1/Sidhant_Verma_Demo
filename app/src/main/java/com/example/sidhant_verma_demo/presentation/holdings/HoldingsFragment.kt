@@ -150,7 +150,7 @@ class HoldingsFragment : Fragment() {
         val parent = requireActivity().findViewById<View>(android.R.id.content)
         Snackbar.make(
             parent,
-            "Failed to load holdings. Please try again.",
+            getString(R.string.failed_to_load_holdings_please_try_again),
             Snackbar.LENGTH_LONG
         ).setAction("Retry") {
             viewModel.loadHoldings()
