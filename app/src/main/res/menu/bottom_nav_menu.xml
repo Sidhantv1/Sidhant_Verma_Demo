@@ -23,7 +23,7 @@
 
     <item
         android:id="@+id/investFragment"
-        android:icon="@drawable/ic_bottom_home"
+        android:icon="@drawable/ic_bottom_mf"
         android:title="Invest" />
 
 </menu>

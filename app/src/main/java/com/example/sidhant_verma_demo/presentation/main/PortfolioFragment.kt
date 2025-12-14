@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.sidhant_verma_demo.R
 import com.example.sidhant_verma_demo.databinding.FragmentPortfolioBinding
@@ -26,6 +27,14 @@ class PortfolioFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val menu = fragmentPortfolioBinding.toolbar.menu
+        menu.findItem(R.id.action_sort)?.icon?.setTint(
+            ContextCompat.getColor(requireContext(), R.color.white_shade)
+        )
+
+        menu.findItem(R.id.action_search)?.icon?.setTint(
+            ContextCompat.getColor(requireContext(), R.color.white_shade)
+        )
         portfolioViewPagerAdapter = PortfolioViewPagerAdapter(this)
         fragmentPortfolioBinding.viewPager.adapter = portfolioViewPagerAdapter
         TabLayoutMediator(

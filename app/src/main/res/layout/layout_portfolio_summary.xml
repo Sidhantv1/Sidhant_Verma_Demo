@@ -103,7 +103,8 @@
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
                 android:background="@color/grey_shade_3" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -113,7 +114,6 @@
             android:id="@+id/summaryHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
